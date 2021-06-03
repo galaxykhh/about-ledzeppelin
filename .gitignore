@@ -8,6 +8,12 @@
 # testing
 /coverage
 
+# image
+/public/Images
+
+# config (path)
+/config.ts
+
 # next.js
 /.next/
 /out/
