@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../components/index/Button';
 import { ButtonsType } from '../../pages/index';
+import { slideUp } from '../../styles/keyframes';
+import Button from './Button';
 
 interface IIndexContainer {
     buttons: ButtonsType;
 };
 
-const IndexContainer: React.FC<IIndexContainer> = (props) => {
+const ButtonList: React.FC<IIndexContainer> = (props) => {
     return (
         <Layout>
             {props.buttons.map(item => (
@@ -22,7 +23,7 @@ const IndexContainer: React.FC<IIndexContainer> = (props) => {
     );
 };
 
-export default IndexContainer;
+export default ButtonList;
 
 const Layout = styled.div`
     display: flex;
@@ -30,4 +31,5 @@ const Layout = styled.div`
     justify-content: center;
     align-items: center;
     width: 400px;
+    animation: ${slideUp} 0.8s ease;
 `;

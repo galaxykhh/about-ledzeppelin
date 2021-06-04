@@ -1,38 +1,37 @@
-import React from 'react';
 import Layout from '../components/Layout';
-import IndexContainer from '../containers/index/IndexContainer';
+import ButtonList from '../components/index/ButtonList';
 
 const buttons = [
     {
         id: 1,
-        to: '',
+        to: '/discography',
         children: 'Discography',
     },
     {
         id: 2,
-        to: '',
-        children: 'item2',
+        to: '/photo',
+        children: 'Photo',
     },
     {
         id: 3,
-        to: '',
-        children: 'item3',
+        to: '/community',
+        children: 'Community',
     },
     {
         id: 4,
-        to: '',
-        children: 'item4',
+        to: '/about',
+        children: 'About',
     },
 ];
 
 export type ButtonsType = typeof buttons;
 
-const Home: React.FC = () => {
+const Index = () => {
     return (
         <Layout title='Led Zeppelin Gallery' >
-            <IndexContainer buttons={buttons} />
+            <ButtonList buttons={buttons} />
         </Layout>
     );
 };
 
-export default Home;
+export default Index;

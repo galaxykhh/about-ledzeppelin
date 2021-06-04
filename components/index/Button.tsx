@@ -10,7 +10,7 @@ const Button: React.FC<IButton> = (props) => {
     return (
         <Layout>
             <Link href={props.to} >
-                <a>{props.children}</a>
+                <Anchor>{props.children}</Anchor>
             </Link>
         </Layout>
     );
@@ -19,19 +19,23 @@ const Button: React.FC<IButton> = (props) => {
 export default Button;
 
 const Layout = styled.div`
-    width: 400px;
-    height: 100px;
-    line-height: 100px;
-    border-radius: 20px;
-    margin: 20px;
-    color: ${({ theme }) => theme.colors.white};
+    text-decoration: none;
+    width: 350px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 10px;
+    margin: 10px;
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
     cursor: pointer;
     transition: .7s ease;
-    :hover {
-        background-color: ${({ theme }) => theme.colors.transWhite};
-        color: ${({ theme }) => theme.colors.black};
-        transform: scale(1.1);
+    &:hover {
+        background-color: ${({ theme }) => theme.colors.transBlack};
+        transform: scale(1.05);
     };
+`;
+
+const Anchor = styled.a`
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.white};
 `;
