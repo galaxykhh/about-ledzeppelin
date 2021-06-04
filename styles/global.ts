@@ -1,13 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 import { reset } from 'styled-reset';
-import { WALLPAPER_PATH, MOBILE_WALLPAPER_PATH } from "../config";
-// import { ThemeType } from "./theme";
+import { ThemeType } from "./theme";
 
-// interface ITheme {
-//     theme: ThemeType;
-// };
+interface ITheme {
+    theme: ThemeType;
+};
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<ITheme>`
     ${reset}
 
     @font-face {
@@ -22,7 +21,9 @@ const GlobalStyle = createGlobalStyle`
     };
     
     body {
+        overflow-x: hidden;
         font-family: 'GmarketSansMedium';
+        background-color: ${({ theme }) => theme.colors.black};
     };
 `;
 

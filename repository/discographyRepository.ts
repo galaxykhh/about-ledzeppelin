@@ -1,7 +1,7 @@
 import { axiosInstance } from "./axiosInstance";
 import { AxiosResponse } from 'axios';
 
-class AlbumRepository {
+class DiscographyRepository {
     private path='/api/album'
 
     public getDiscography(): Promise<AxiosResponse> {
@@ -9,5 +9,5 @@ class AlbumRepository {
     };
 };
 
-const albumRepository = new AlbumRepository();
-export default albumRepository;
+const discographyRepository = new DiscographyRepository();
+export default discographyRepository;

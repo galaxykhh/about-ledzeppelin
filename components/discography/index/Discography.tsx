@@ -3,17 +3,31 @@ import styled from 'styled-components';
 import { slideUp } from '../../../styles/keyframes';
 import Album from './Album';
 
-interface IAlbumList {
-    albumList: any[] // 백엔드 구성 후 타입 선언
+interface ISong {
+    id: number;
+    title: string;
 };
 
-const AlbumList: React.FC<IAlbumList> = (props) => {
+export interface IAlbum {
+    id: number;
+    image: string;
+    albumTitle: string;
+    released: string;
+    songs: ISong[];
+}
+
+interface IDiscography {
+    discography: IAlbum[];
+};
+
+const Discography: React.FC<IDiscography> = (props) => {
     return (
         <>
             <Text>Discography</Text>
             <Layout>
-                {props.albumList.map(item => (
+                {props.discography.map(item => (
                     <Album
+                        image={item.image}
                         albumTitle={item.albumTitle}
                         released={item.released}
                         key={item.id}
@@ -24,13 +38,13 @@ const AlbumList: React.FC<IAlbumList> = (props) => {
     );
 };
 
-export default AlbumList;
+export default Discography;
 
 const Layout = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
-    width: 800px;
+    width: 1000px;
     height: 600px;
     animation: ${slideUp} 0.8s ease;
     @media only screen and (max-width: 900px) {
@@ -47,5 +61,6 @@ const Layout = styled.div`
 const Text = styled.div`
     font-size: 40px;
     color: ${({ theme }) => theme.colors.white};
-    margin-bottom: 50px;
+    margin-bottom: 100px;
+    text-shadow: 5px 5px 5px ${({ theme }) => theme.colors.black}
 `;

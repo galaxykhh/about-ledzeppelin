@@ -30,7 +30,7 @@ const Layout = styled.div`
     cursor: pointer;
     transition: .7s ease;
     &:hover {
-        background-color: ${({ theme }) => theme.colors.transBlack};
+        background-color: ${({ theme }) => theme.colors.transWhite};
         transform: scale(1.05);
     };
 `;
@@ -38,4 +38,5 @@ const Layout = styled.div`
 const Anchor = styled.a`
     text-decoration: none;
     color: ${({ theme }) => theme.colors.white};
+    text-shadow: 5px 5px 5px ${({ theme }) => theme.colors.black};
 `;
