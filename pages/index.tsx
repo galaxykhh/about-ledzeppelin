@@ -1,31 +1,38 @@
 import React from 'react';
-import styled from 'styled-components';
 import Layout from '../components/Layout';
-import { WALLPAPER_PATH } from '../config';
+import IndexContainer from '../containers/index/IndexContainer';
+
+const buttons = [
+    {
+        id: 1,
+        to: '',
+        children: 'Discography',
+    },
+    {
+        id: 2,
+        to: '',
+        children: 'item2',
+    },
+    {
+        id: 3,
+        to: '',
+        children: 'item3',
+    },
+    {
+        id: 4,
+        to: '',
+        children: 'item4',
+    },
+];
+
+export type ButtonsType = typeof buttons;
 
 const Home: React.FC = () => {
     return (
         <Layout title='Led Zeppelin Gallery' >
-            <WallPaper />
+            <IndexContainer buttons={buttons} />
         </Layout>
     );
 };
 
 export default Home;
-
-const WallPaper = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(20, 20, 20, 0.6) 1%,
-        rgba(20, 20, 20, 0.8) 40%,
-        rgba(20, 20, 20, 0.9) 100%
-    ),
-    url(${WALLPAPER_PATH});
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-`;
-
