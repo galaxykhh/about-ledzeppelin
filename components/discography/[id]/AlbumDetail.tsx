@@ -33,7 +33,7 @@ const Layout = styled.div`
         justify-content: flex;
         align-items: center;
     };
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
         width: 450px;
         flex-direction: column;
         justify-content: flex;

@@ -28,28 +28,28 @@ const Layout = styled.div`
     justify-content: center;
     align-items: center;
     width: 190px;
-    height: 230px;
+    height: 270px;
     cursor: pointer;
     transition: .5s ease;
     :hover {
         transform: translateY(-20px);
     }
-    @media only screen and (max-width: 500px) {
-        width: 110px;
-        height: 160px;
+    @media only screen and (max-width: 600px) {
+        width: 140px;
+        height: 190px;
     };
 `;
 
 const AlbumCover = styled.a<{image: string}>`
-    width: 170px;
-    height: 170px;
+    width: 190px;
+    height: 190px;
     margin-bottom: 10px;
     background-image: url(${({ image }) => image});
     background-size: cover;
     box-shadow: 5px 5px 5px ${({ theme }) => theme.colors.black};
-    @media only screen and (max-width: 500px) {
-        width: 90px;
-        height: 90px;
+    @media only screen and (max-width: 600px) {
+        width: 120px;
+        height: 120px;
     };
 `;
 
@@ -62,15 +62,16 @@ const AlbumTitle = styled.div`
     @media only screen and (max-width: 900px) {
         font-size: 14px;
     };
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
         font-size: 12px;
     };
 `;
 
 const ReleasedAt = styled.div`
     font-size: 15px;
+    margin-bottom: 20px;
     color: ${({ theme }) => theme.colors.grey};
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
         font-size: 12px;
     };
 `;

@@ -36,7 +36,7 @@ const AlbumCover = styled.div<{image: string}>`
     @media only screen and (max-width: 900px) {
         
     };
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
         width: 250px;
         height: 250px;
     };

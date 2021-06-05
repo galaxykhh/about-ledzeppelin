@@ -1,18 +1,22 @@
+import { useRouter } from 'next/dist/client/router';
 import { ReactNode } from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 interface IButton {
     to: string;
     children: ReactNode
-}
+};
 
 const Button = (props: IButton) => {
+    const router = useRouter();
+
+    const pushTo = (path: string): void => {
+        router.push(path);
+    };
+
     return (
-        <Layout>
-            <Link href={props.to} >
-                <Anchor>{props.children}</Anchor>
-            </Link>
+        <Layout onClick={() => pushTo(props.to)} >
+            <Category>{props.children}</Category>
         </Layout>
     );
 };
@@ -21,7 +25,7 @@ export default Button;
 
 const Layout = styled.div`
     text-decoration: none;
-    width: 350px;
+    width: 300px;
     height: 70px;
     line-height: 70px;
     border-radius: 10px;
@@ -36,7 +40,7 @@ const Layout = styled.div`
     };
 `;
 
-const Anchor = styled.a`
+const Category = styled.div`
     text-decoration: none;
     color: ${({ theme }) => theme.colors.white};
     text-shadow: 2px 2px 5px ${({ theme }) => theme.colors.black};

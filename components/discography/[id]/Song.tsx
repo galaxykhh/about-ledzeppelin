@@ -37,7 +37,7 @@ const Layout = styled.li<ILayout>`
     :nth-child(${({ trackNumber }) => trackNumber }) {
         animation-delay: ${({ delay }) => delay }s
     };
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
         width: 300px;
         font-size: 13px;
     };
