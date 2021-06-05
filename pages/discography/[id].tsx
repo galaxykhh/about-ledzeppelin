@@ -1,9 +1,39 @@
-const PPPP = () => {
-    return(
-        <div>
+import { flowResult } from "mobx";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import Layout from "../../components/Layout";
+import discographyStore from "../../store/discographyStore";
+import { ParsedUrlQuery } from 'querystring';
+import { IAlbum, ISong } from "../../components/discography/index/Discography";
+import AlbumDetail from "../../components/discography/[id]/AlbumDetail";
 
-        </div>
+interface IParams extends ParsedUrlQuery {
+    id: string;
+};
+
+export interface IAlbumDetail extends IAlbum {
+    songs: ISong[];
+};
+
+const SelectedAlbum = (props: IAlbumDetail) => {
+    return(
+        <Layout title={props.albumTitle} >
+            <AlbumDetail
+                id={props.id}
+                songs={props.songs}
+                image={props.image}
+                albumTitle={props.albumTitle}
+                released={props.released}
+            />
+        </Layout>
     );
 };
 
-export default PPPP;
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+    const { id } = context.params as IParams;
+    const data = await flowResult(discographyStore.getSelectedAlbum(id));
+    return {
+        props: data
+    }
+};
+
+export default SelectedAlbum;

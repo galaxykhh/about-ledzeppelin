@@ -7,6 +7,10 @@ class DiscographyRepository {
     public getDiscography(): Promise<AxiosResponse> {
         return axiosInstance.get(this.path);
     };
+
+    public getSelectedAlbum(id: string): Promise<AxiosResponse> {
+        return axiosInstance.get(`${this.path}/${id}`);
+    };
 };
 
 const discographyRepository = new DiscographyRepository();

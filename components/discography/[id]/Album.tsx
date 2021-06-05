@@ -1,19 +1,15 @@
-import styled from 'styled-components';
-import Link from 'next/link';
+import styled from "styled-components";
 
 interface IAlbum {
-    id: number;
     image: string;
     albumTitle: string;
     released: string;
-};
+}
 
 const Album = (props: IAlbum) => {
     return (
         <Layout>
-            <Link href={`/discography/${props.id}`}>
-                <AlbumCover image={props.image}/>
-            </Link>
+            <AlbumCover image={props.image} />
             <AlbumTitle>{props.albumTitle}</AlbumTitle>
             <ReleasedAt>{props.released}</ReleasedAt>
         </Layout>
@@ -27,29 +23,22 @@ const Layout = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 190px;
-    height: 230px;
-    cursor: pointer;
-    transition: .5s ease;
-    :hover {
-        transform: translateY(-20px);
-    }
-    @media only screen and (max-width: 500px) {
-        width: 110px;
-        height: 160px;
-    };
+    width: 360px;
 `;
 
-const AlbumCover = styled.a<{image: string}>`
-    width: 170px;
-    height: 170px;
+const AlbumCover = styled.div<{image: string}>`
+    width: 350px;
+    height: 350px;
     margin-bottom: 10px;
     background-image: url(${({ image }) => image});
     background-size: cover;
     box-shadow: 5px 5px 5px ${({ theme }) => theme.colors.black};
+    @media only screen and (max-width: 900px) {
+        
+    };
     @media only screen and (max-width: 500px) {
-        width: 90px;
-        height: 90px;
+        width: 250px;
+        height: 250px;
     };
 `;
 
@@ -59,18 +48,10 @@ const AlbumTitle = styled.div`
     margin-bottom: 10px;
     white-space: nowrap;
     color: ${({ theme }) => theme.colors.white};
-    @media only screen and (max-width: 900px) {
-        font-size: 14px;
-    };
-    @media only screen and (max-width: 500px) {
-        font-size: 12px;
-    };
 `;
 
 const ReleasedAt = styled.div`
     font-size: 15px;
     color: ${({ theme }) => theme.colors.grey};
-    @media only screen and (max-width: 500px) {
-        font-size: 12px;
-    };
+    margin-bottom: 20px;
 `;

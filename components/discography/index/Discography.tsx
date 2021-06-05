@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { slideUp } from '../../../styles/keyframes';
 import Album from './Album';
 
-interface ISong {
-    id: number;
+export interface ISong {
+    trackNumber: number;
     title: string;
 };
 
@@ -13,12 +13,10 @@ export interface IAlbum {
     image: string;
     albumTitle: string;
     released: string;
-    songs: ISong[];
-}
+};
 
 interface IDiscography {
     discography: IAlbum[];
-    router: () => void;
 };
 
 const Discography = (props: IDiscography) => {
@@ -28,7 +26,7 @@ const Discography = (props: IDiscography) => {
             <Layout>
                 {props.discography.map(item => (
                     <Album
-                        router={props.router}
+                        id={item.id}
                         image={item.image}
                         albumTitle={item.albumTitle}
                         released={item.released}
@@ -55,7 +53,7 @@ const Layout = styled.div`
     };
     @media only screen and (max-width: 500px) {
         width: 350px;
-        height: 400px;
+        height: 600px;
         grid-template-columns: repeat(2, 1fr);
     };
 `;
@@ -63,6 +61,6 @@ const Layout = styled.div`
 const Text = styled.div`
     font-size: 40px;
     color: ${({ theme }) => theme.colors.white};
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     text-shadow: 5px 5px 5px ${({ theme }) => theme.colors.black}
 `;

@@ -1,27 +1,28 @@
-import { flow, action, makeObservable, observable } from "mobx";
-import { IAlbum } from "../components/discography/index/Discography"
+import { flow, makeObservable } from "mobx";
 import discographyRepository from "../repository/discographyRepository";
 
 class DiscographyStore {
-    public discography: IAlbum[] = [];
-
     constructor() {
         makeObservable(this, {
-            discography: observable,
-            setDiscographyData: action,
             getDiscographyData: flow,
+            getSelectedAlbum: flow,
         });
-    };
-
-    public setDiscographyData(data: IAlbum[]) {
-        this.discography = data;
     };
 
     public *getDiscographyData() {
         try {
             const { data } = yield discographyRepository.getDiscography();
-            this.setDiscographyData(data);
-            return this.discography;
+            return data;
+        } catch(err) {
+            console.log(err);
+            alert('server under maintenance');
+        };
+    };
+
+    public *getSelectedAlbum(id: string) {
+        try {
+            const { data } = yield discographyRepository.getSelectedAlbum(id);
+            return data;
         } catch(err) {
             console.log(err);
             alert('server under maintenance');

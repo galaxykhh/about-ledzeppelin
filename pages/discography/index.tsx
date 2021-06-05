@@ -1,31 +1,30 @@
 import React from 'react';
 import Layout from "../../components/Layout";
 import AlbumList from "../../components/discography/index/Discography";
-import { observer } from "mobx-react";
 import discographyStore from "../../store/discographyStore";
 import { GetStaticProps } from "next";
 import { flowResult } from "mobx";
 import { IAlbum } from '../../components/discography/index/Discography';
 
 interface IDiscographyIndex {
-    list: IAlbum[];
+    discography: IAlbum[];
 };
 
-const DiscographyIndex: React.FC<IDiscographyIndex> = observer((props) => {
+const DiscographyIndex = (props: IDiscographyIndex) => {
     return (
-        <Layout title='Discography' >
+        <Layout title='Led Zeppeling Discography' >
             <AlbumList
-                discography={props.list}
+                discography={props.discography}
             />
         </Layout>
     );
-});
+};
 
 export const getStaticProps: GetStaticProps = async () => {
     const discography = await flowResult(discographyStore.getDiscographyData());
     return {
         props: {
-            list: discography
+            discography: discography
         }
     };
 };

@@ -10,3 +10,14 @@ export const slideUp = keyframes`
         transform: translateY(0px);
     }
 `;
+
+export const slideRight = keyframes`
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+`;
