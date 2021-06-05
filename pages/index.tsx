@@ -30,7 +30,7 @@ export type ButtonsType = typeof buttons;
 const Index = () => {
     const { push } = useRouter();
     return (
-        <Layout title='Led Zeppelin Gallery' >
+        <Layout title='About Led Zeppelin' >
             <ButtonList
                 pushTo={push}
                 buttons={buttons}
