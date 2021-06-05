@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { ButtonsType } from '../../pages/index';
 import { slideUp } from '../../styles/keyframes';
@@ -8,7 +7,7 @@ interface IIndexContainer {
     buttons: ButtonsType;
 };
 
-const ButtonList: React.FC<IIndexContainer> = (props) => {
+const ButtonList = (props: IIndexContainer) => {
     return (
         <Layout>
             {props.buttons.map(item => (

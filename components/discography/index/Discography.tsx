@@ -18,15 +18,17 @@ export interface IAlbum {
 
 interface IDiscography {
     discography: IAlbum[];
+    router: () => void;
 };
 
-const Discography: React.FC<IDiscography> = (props) => {
+const Discography = (props: IDiscography) => {
     return (
         <>
             <Text>Discography</Text>
             <Layout>
                 {props.discography.map(item => (
                     <Album
+                        router={props.router}
                         image={item.image}
                         albumTitle={item.albumTitle}
                         released={item.released}

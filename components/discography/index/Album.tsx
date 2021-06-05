@@ -1,15 +1,15 @@
-import React from 'react';
 import styled from 'styled-components';
 
 interface IAlbum {
     image: string;
     albumTitle: string;
     released: string;
+    router: () => void;
 };
 
-const Album: React.FC<IAlbum> = (props) => {
+const Album = (props: IAlbum) => {
     return (
-        <Layout>
+        <Layout onClick={props.router} >
             <AlbumCover image={props.image} />
             <AlbumTitle> {props.albumTitle} </AlbumTitle>
             <ReleasedAt> {props.released} </ReleasedAt>

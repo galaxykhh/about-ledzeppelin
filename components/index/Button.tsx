@@ -1,12 +1,13 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 interface IButton {
     to: string;
+    children: ReactNode
 }
 
-const Button: React.FC<IButton> = (props) => {
+const Button = (props: IButton) => {
     return (
         <Layout>
             <Link href={props.to} >

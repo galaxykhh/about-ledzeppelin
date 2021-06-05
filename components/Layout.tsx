@@ -1,11 +1,12 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import Head from 'next/head';
 
 interface ILayout {
     title: string;
+    children: ReactNode
 };
 
-const Layout: React.FC<ILayout> = (props) => {
+const Layout = (props: ILayout) => {
     return (
         <>
             <Head>
