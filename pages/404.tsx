@@ -24,6 +24,9 @@ const Text = styled.div`
     font-size: 20px;
     color: ${({ theme }) => theme.colors.white};
     margin-bottom: 20px;
+    @media only screen and (max-width: 600px) {
+        font-size: 15px;
+    };
 `;
 
 const PushButton = styled.button`
@@ -39,5 +42,10 @@ const PushButton = styled.button`
     :hover {
         color: ${({ theme }) => theme.colors.white};
         background-color: ${({ theme }) => theme.colors.black};
+    };
+    @media only screen and (max-width: 600px) {
+        width: 120px;
+        height: 30px;
+        font-size: 13px;
     };
 `;

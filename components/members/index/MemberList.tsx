@@ -1,24 +1,22 @@
-import React from 'react';
-import styled from 'styled-components';
-import { slideUp } from '../../../styles/keyframes';
-import Album from './Album';
-import { IAlbum } from './Album';
+import styled from "styled-components";
+import { slideUp } from "../../../styles/keyframes";
+import Member from "./Member";
+import { IMember } from './Member';
 
-interface IDiscography {
-    discography: IAlbum[];
+interface IMemberList {
+    memberList: IMember[];
 };
 
-const Discography = (props: IDiscography) => {
+const MemberList = (props: IMemberList) => {
     return (
         <Layout>
-            <Text>Discography</Text>
+            <Text>Members</Text>
             <GridBox>
-                {props.discography.map(item => (
-                    <Album
+                {props.memberList.map(item => (
+                    <Member
                         id={item.id}
+                        name={item.name}
                         image={item.image}
-                        albumTitle={item.albumTitle}
-                        released={item.released}
                         key={item.id}
                     />
                 ))}
@@ -27,7 +25,7 @@ const Discography = (props: IDiscography) => {
     );
 };
 
-export default Discography;
+export default MemberList;
 
 const Layout = styled.div`
     display: flex;
@@ -43,16 +41,17 @@ const GridBox = styled.div`
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     width: 1000px;
-    animation: ${slideUp} 0.8s ease;
+    height: 400px;
+    animation: ${slideUp} .8s ease;
     @media only screen and (max-width: 900px) {
-        width: 700px;
-        grid-template-columns: repeat(3, 1fr);
+        width: 500px;
+        height: 600px;
+        grid-template-columns: repeat(2, 1fr);
     };
     @media only screen and (max-width: 600px) {
-        min-width: 280px;
+        min-width: 200px;
         width: 100%;
         height: 400px;
-        grid-template-columns: repeat(2, 1fr);
     };
 `;
 
@@ -60,8 +59,5 @@ const Text = styled.div`
     font-size: 4vh;
     color: ${({ theme }) => theme.colors.white};
     margin-bottom: 50px;
-    text-shadow: 5px 5px 5px ${({ theme }) => theme.colors.black};
-    @media only screen and (max-width: 600px) {
-        font-size: 3vh;
-    };
+    text-shadow: 5px 5px 5px ${({ theme }) => theme.colors.black}
 `;

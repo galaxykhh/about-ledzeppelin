@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { slideRight } from "../../../styles/keyframes";
 
-interface ISong {
+export interface ISong {
     trackNumber: number;
     title: string;
     delay: number;
@@ -35,7 +35,7 @@ const Layout = styled.li<ILayout>`
     opacity: 0;
     animation: ${slideRight} .6s ease forwards;
     :nth-child(${({ trackNumber }) => trackNumber }) {
-        animation-delay: ${({ delay }) => delay }s
+        animation-delay: ${({ delay }) => delay }s;
     };
     @media only screen and (max-width: 600px) {
         width: 300px;

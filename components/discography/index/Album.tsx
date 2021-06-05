@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-interface IAlbum {
+export interface IAlbum {
     id: number;
     image: string;
     albumTitle: string;

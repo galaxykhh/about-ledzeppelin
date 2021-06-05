@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import ButtonList from '../components/index/ButtonList';
+import { useRouter } from 'next/dist/client/router';
 
 const buttons = [
     {
@@ -9,8 +10,8 @@ const buttons = [
     },
     {
         id: 2,
-        to: '/photo',
-        children: 'Photo',
+        to: '/members',
+        children: 'Members',
     },
     {
         id: 3,
@@ -20,16 +21,20 @@ const buttons = [
     {
         id: 4,
         to: '/about',
-        children: 'About',
+        children: 'About this page',
     },
 ];
 
 export type ButtonsType = typeof buttons;
 
 const Index = () => {
+    const { push } = useRouter();
     return (
         <Layout title='Led Zeppelin Gallery' >
-            <ButtonList buttons={buttons} />
+            <ButtonList
+                pushTo={push}
+                buttons={buttons}
+            />
         </Layout>
     );
 };

@@ -43,7 +43,7 @@ const AlbumCover = styled.div<{image: string}>`
 `;
 
 const AlbumTitle = styled.div`
-    font-size: 18px;
+    font-size: 30px;
     text-align: center;
     margin-bottom: 10px;
     white-space: nowrap;
@@ -51,7 +51,7 @@ const AlbumTitle = styled.div`
 `;
 
 const ReleasedAt = styled.div`
-    font-size: 15px;
+    font-size: 20px;
     color: ${({ theme }) => theme.colors.grey};
     margin-bottom: 20px;
 `;

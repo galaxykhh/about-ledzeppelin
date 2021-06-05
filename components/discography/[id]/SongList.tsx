@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ISong } from '../../discography/index/Discography';
+import { ISong } from './Song';
 import Song from './Song';
 
 interface ISongList {
@@ -43,5 +43,6 @@ const Layout = styled.ul`
     @media only screen and (max-width: 600px) {
         width: 350px;
         overflow: auto;
+        margin-left: 40px;
     };
 `;

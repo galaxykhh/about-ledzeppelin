@@ -1,9 +1,10 @@
 import { flowResult } from "mobx";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import Layout from "../../components/Layout";
-import discographyStore from "../../store/discographyStore";
 import { ParsedUrlQuery } from 'querystring';
-import { IAlbum, ISong } from "../../components/discography/index/Discography";
+import discographyStore from "../../store/discographyStore";
+import { IAlbum } from "../../components/discography/index/Album";
+import { ISong } from "../../components/discography/[id]/Song";
+import Layout from "../../components/Layout";
 import AlbumDetail from "../../components/discography/[id]/AlbumDetail";
 
 interface IParams extends ParsedUrlQuery {

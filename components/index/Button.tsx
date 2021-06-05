@@ -1,21 +1,15 @@
-import { useRouter } from 'next/dist/client/router';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface IButton {
     to: string;
     children: ReactNode
+    pushTo: (to: string) => void;
 };
 
 const Button = (props: IButton) => {
-    const router = useRouter();
-
-    const pushTo = (path: string): void => {
-        router.push(path);
-    };
-
     return (
-        <Layout onClick={() => pushTo(props.to)} >
+        <Layout onClick={() => props.pushTo(props.to)} >
             <Category>{props.children}</Category>
         </Layout>
     );
@@ -44,4 +38,7 @@ const Category = styled.div`
     text-decoration: none;
     color: ${({ theme }) => theme.colors.white};
     text-shadow: 2px 2px 5px ${({ theme }) => theme.colors.black};
+    @media only screen and (max-width: 600px) {
+        font-size: 3vh;
+    };
 `;

@@ -4,7 +4,7 @@ import AlbumList from "../../components/discography/index/Discography";
 import discographyStore from "../../store/discographyStore";
 import { GetStaticProps } from "next";
 import { flowResult } from "mobx";
-import { IAlbum } from '../../components/discography/index/Discography';
+import { IAlbum } from '../../components/discography/index/Album';
 
 interface IDiscographyIndex {
     discography: IAlbum[];
@@ -13,9 +13,7 @@ interface IDiscographyIndex {
 const DiscographyIndex = (props: IDiscographyIndex) => {
     return (
         <Layout title='Led Zeppeling Discography' >
-            <AlbumList
-                discography={props.discography}
-            />
+            <AlbumList discography={props.discography} />
         </Layout>
     );
 };
@@ -28,6 +26,5 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     };
 };
-
 
 export default DiscographyIndex;

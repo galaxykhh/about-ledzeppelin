@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { IAlbum, ISong } from "../index/Discography";
+import { IAlbum } from "../index/Album";
+import { ISong } from "./Song";
 import SongList from "./SongList";
 import Album from './Album';
 

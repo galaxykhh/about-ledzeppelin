@@ -5,6 +5,7 @@ import Button from './Button';
 
 interface IIndexContainer {
     buttons: ButtonsType;
+    pushTo: (path: string) => void
 };
 
 const ButtonList = (props: IIndexContainer) => {
@@ -12,6 +13,7 @@ const ButtonList = (props: IIndexContainer) => {
         <Layout>
             {props.buttons.map(item => (
                 <Button
+                    pushTo={() => props.pushTo(item.to)}
                     to={item.to}
                     key={item.id}
                 >
