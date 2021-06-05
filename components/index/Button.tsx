@@ -38,5 +38,5 @@ const Layout = styled.div`
 const Anchor = styled.a`
     text-decoration: none;
     color: ${({ theme }) => theme.colors.white};
-    text-shadow: 5px 5px 5px ${({ theme }) => theme.colors.black};
+    text-shadow: 2px 2px 5px ${({ theme }) => theme.colors.black};
 `;

@@ -21,6 +21,7 @@ class DiscographyStore {
         try {
             const { data } = yield discographyRepository.getDiscography();
             this.setDiscographyData(data);
+            return this.discography;
         } catch(err) {
             console.log(err);
             alert('server under maintenance');
