@@ -4,19 +4,39 @@ import { MOBILE_WALLPAPER_PATH, WALLPAPER_PATH } from '../config';
 import { theme } from '../styles/theme';
 import GlobalStyle from '../styles/global';
 import RedirectButton from '../components/RedirectButton';
+import { useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/dist/client/router';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 function MyApp({ Component, pageProps }: AppProps) {
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+    const router = useRouter()
+
+    const handleStart = useCallback((): void => {
+        setIsLoading(true);
+    }, []);
+
+    const handleComplete = useCallback((): void => {
+        setIsLoading(false);
+    }, []);
+
+    useEffect(() => {
+        router.events.on('routeChangeStart', handleStart);
+        router.events.on('routeChangeComplete', handleComplete);
+        router.events.on('routeChangeError', handleComplete);
+    }, []);
+
     return (
-        <>  
-            <ThemeProvider theme={theme} >
-                <GlobalStyle />
-                <WallPaper />
-                <RedirectButton />
-                <FlexContainer>
-                    <Component {...pageProps} />
-                </FlexContainer>
-            </ThemeProvider>
-        </>
+        <ThemeProvider theme={theme} >
+            <GlobalStyle />
+            <WallPaper />
+            <RedirectButton />
+            <FlexContainer>
+                {isLoading ?
+                    <LoadingSpinner /> : <Component {...pageProps} />  
+                }
+            </FlexContainer>
+        </ThemeProvider>
     );
 };
 export default MyApp;
