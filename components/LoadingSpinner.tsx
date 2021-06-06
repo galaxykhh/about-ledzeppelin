@@ -6,7 +6,7 @@ const LoadingSpinner = () => {
     return (
         <Layout>
             <Loader
-                type="Puff"
+                type="Circles"
                 color={theme.colors.white}
                 height={60}
                 width={60}
