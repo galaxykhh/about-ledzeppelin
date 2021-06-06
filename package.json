@@ -4,9 +4,8 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "deploy": "next build && next export"
+        "build": "next build && next export",
+        "start": "next start"
     },
     "dependencies": {
         "@types/styled-components": "^5.1.9",
