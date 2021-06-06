@@ -1,9 +1,8 @@
 import Layout from "../../components/Layout";
 import { GetStaticProps } from "next";
-import { flowResult } from "mobx";
-import membersStore from "../../store/membersStore";
-import MemberList from "../../components/members/index/MemberList";
 import { IMember } from '../../components/members/index/Member';
+import MemberList from "../../components/members/index/MemberList";
+import membersRepository from "../../repository/membersRepository";
 
 interface IMembersIndex {
     memberList: IMember[];
@@ -18,10 +17,10 @@ const MembersIndex = (props: IMembersIndex) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-    const memberList = await flowResult(membersStore.getMembersData());
+    const { data } = await membersRepository.getMembersData();
     return {
         props: {
-            memberList: memberList
+            memberList: data
         }
     };
 };

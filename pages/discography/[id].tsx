@@ -1,11 +1,10 @@
-import { flowResult } from "mobx";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from 'querystring';
-import discographyStore from "../../store/discographyStore";
 import { IAlbum } from "../../components/discography/index/Album";
 import { ISong } from "../../components/discography/[id]/Song";
 import Layout from "../../components/Layout";
 import AlbumDetail from "../../components/discography/[id]/AlbumDetail";
+import discographyRepository from "../../repository/discographyRepository";
 
 interface IParams extends ParsedUrlQuery {
     id: string;
@@ -31,7 +30,7 @@ const SelectedAlbum = (props: IAlbumDetail) => {
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
     const { id } = context.params as IParams;
-    const data = await flowResult(discographyStore.getSelectedAlbum(id));
+    const { data } = await discographyRepository.getSelectedAlbum(id);
     return {
         props: data
     }

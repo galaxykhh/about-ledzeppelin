@@ -1,9 +1,8 @@
-import { flowResult } from "mobx";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from 'querystring';
 import Layout from "../../components/Layout";
-import membersStore from "../../store/membersStore";
 import MemberDetail from "../../components/members/[member]/MemberDetail";
+import membersRepository from "../../repository/membersRepository";
 
 interface IParams extends ParsedUrlQuery {
     id: string;
@@ -31,7 +30,7 @@ const SelectedMember = (props: ISelectedMember) => {
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
     const { id } = context.params as IParams;
-    const data = await flowResult(membersStore.getSelectedMember(id));
+    const { data } = await membersRepository.getSelectedMember(id);
     return {
         props: data
     }

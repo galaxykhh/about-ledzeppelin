@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios';
 class DiscographyRepository {
     private path='/api/album'
 
-    public getDiscography(): Promise<AxiosResponse> {
+    public getDiscographyData(): Promise<AxiosResponse> {
         return axiosInstance.get(this.path);
     };
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import Layout from "../../components/Layout";
 import AlbumList from "../../components/discography/index/Discography";
-import discographyStore from "../../store/discographyStore";
 import { GetStaticProps } from "next";
-import { flowResult } from "mobx";
 import { IAlbum } from '../../components/discography/index/Album';
+import discographyRepository from '../../repository/discographyRepository';
 
 interface IDiscographyIndex {
     discography: IAlbum[];
@@ -19,10 +18,10 @@ const DiscographyIndex = (props: IDiscographyIndex) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-    const discography = await flowResult(discographyStore.getDiscographyData());
+    const { data } = await discographyRepository.getDiscographyData();
     return {
         props: {
-            discography: discography
+            discography: data
         }
     };
 };
