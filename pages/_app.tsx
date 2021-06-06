@@ -1,8 +1,9 @@
 import type { AppProps } from 'next/app';
 import styled, { ThemeProvider } from 'styled-components';
 import { MOBILE_WALLPAPER_PATH, WALLPAPER_PATH } from '../config';
-import GlobalStyle from '../styles/global';
 import { theme } from '../styles/theme';
+import GlobalStyle from '../styles/global';
+import RedirectButton from '../components/RedirectButton';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <ThemeProvider theme={theme} >
                 <GlobalStyle />
                 <WallPaper />
+                <RedirectButton />
                 <FlexContainer>
                     <Component {...pageProps} />
                 </FlexContainer>

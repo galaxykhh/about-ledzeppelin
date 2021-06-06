@@ -1,5 +1,5 @@
 import Layout from "../../components/Layout";
-import AboutDetail from "../../components/discography/about/AboutDetail";
+import AboutDetail from "../../components/about/AboutDetail";
 
 const iconList = [
     {

@@ -9,7 +9,7 @@ interface IAboutDetail {
 const AboutDetail = (props: IAboutDetail) => {
     return (
         <Layout>
-            <Text>This site was made using these things !</Text>
+            <Text>This site was made using these things</Text>
             <IconList iconList={props.iconList} />
         </Layout>
     );
@@ -28,4 +28,7 @@ const Text = styled.div`
     font-size: 20px;
     color: ${({ theme }) => theme.colors.white};
     margin-bottom: 20px;
+    @media only screen and (max-width: 600px) {
+        font-size: 2vh;
+    };
 `;

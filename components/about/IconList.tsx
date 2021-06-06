@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { slideUp } from "../../../styles/keyframes";
+import { slideUp } from "../../styles/keyframes";
 import Icon, { IIcon } from "./Icon";
 
 interface IIconList {
@@ -32,4 +32,7 @@ const Layout = styled.div`
     border-radius: 10px;
     background-color: ${({ theme }) => theme.colors.transWhite};
     animation: ${slideUp} .8s ease;
+    @media only screen and (max-width: 600px) {
+        width: 280px;
+    };
 `;
