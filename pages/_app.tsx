@@ -9,6 +9,7 @@ import { useRouter } from 'next/dist/client/router';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 function MyApp({ Component, pageProps }: AppProps) {
+    console.log('aa');
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const router = useRouter()
 

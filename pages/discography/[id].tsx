@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from 'querystring';
 import { IAlbum } from "../../components/discography/index/Album";
 import { ISong } from "../../components/discography/[id]/Song";
@@ -28,12 +28,23 @@ const SelectedAlbum = (props: IAlbumDetail) => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+    const { data } = await discographyRepository.getDiscographyData();
+    const paths = data.map((x: IAlbum) => ({
+        params: { id: x.id }
+    }))
+    return {
+        paths,
+        fallback: false
+    };
+};
+
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
     const { id } = context.params as IParams;
     const { data } = await discographyRepository.getSelectedAlbum(id);
     return {
         props: data
-    }
+    };
 };
 
 export default SelectedAlbum;
