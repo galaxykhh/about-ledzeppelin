@@ -6,7 +6,7 @@ const iconList = [
         alt: 'Next.js',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/414px-Nextjs-logo.svg.png',
     },
-]
+];
 
 const AboutIndex = () => {
     return (

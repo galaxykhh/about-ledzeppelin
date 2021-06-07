@@ -7,6 +7,7 @@ import RedirectButton from '../components/RedirectButton';
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import LoadingSpinner from '../components/LoadingSpinner';
+import MenuList from '../components/menubar/MenuList';
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
@@ -31,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <GlobalStyle />
             <WallPaper />
             <RedirectButton />
+            <MenuList />
             <FlexContainer>
                 {isLoading ?
                     <LoadingSpinner /> : <Component {...pageProps} />  

@@ -1,9 +1,9 @@
 import React from 'react';
 import Layout from "../../components/Layout";
-import AlbumList from "../../components/discography/index/Discography";
 import { GetStaticProps } from "next";
-import { IAlbum } from '../../components/discography/index/Album';
+import AlbumList from "../../components/discography/index/Discography";
 import discographyRepository from '../../repository/discographyRepository';
+import { IAlbum } from '../../components/discography/index/Album';
 
 interface IDiscographyIndex {
     discography: IAlbum[];
@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return {
         props: {
             discography: data
-        }
+        },
     };
 };
 

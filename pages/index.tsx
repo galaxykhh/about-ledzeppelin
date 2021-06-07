@@ -4,22 +4,22 @@ import { useRouter } from 'next/dist/client/router';
 
 const buttons = [
     {
-        id: 1,
+        id: '1',
         to: '/discography',
         children: 'Discography',
     },
     {
-        id: 2,
+        id: '2',
         to: '/members',
         children: 'Members',
     },
     {
-        id: 3,
+        id: '3',
         to: '/community',
         children: 'Community',
     },
     {
-        id: 4,
+        id: '4',
         to: '/about',
         children: 'About this page',
     },
