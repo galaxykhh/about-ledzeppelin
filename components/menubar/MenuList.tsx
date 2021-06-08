@@ -31,7 +31,7 @@ export default MenuList;
 const Layout = styled.div`
     position: absolute;
     top: 10px;
-    right: 20px;
+    right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;

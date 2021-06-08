@@ -27,14 +27,17 @@ export const Input = styled.input<{ error: any }>`
         font-size: 14px;
     };
 `;
-
-export const ErrorMsg = styled.span`
+export const Msg = styled.span`
     position: absolute;
     bottom: 0px;
-    color: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.green};
     @media only screen and (max-width: 600px) {
         font-size: 13px;
     };
+`;
+
+export const ErrorMsg = styled(Msg)`
+    color: ${({ theme }) => theme.colors.red};
 `;
 
 export const AccountCheckButton = styled.button`

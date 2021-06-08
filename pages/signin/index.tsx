@@ -41,7 +41,7 @@ const SignInIndex = () => {
                         />
                         {errors.password && <ErrorMsg> {errors.password.message} </ErrorMsg>}
                     </InputLayout>
-                    <SubmitButton onClick={handleSubmit(onSubmit)} >Sign in</SubmitButton>
+                    <SubmitButton onClick={handleSubmit(onSubmit)} >sign in</SubmitButton>
                 </Container>
             </form>
         </Layout>

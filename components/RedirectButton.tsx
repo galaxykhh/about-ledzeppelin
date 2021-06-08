@@ -23,11 +23,11 @@ export default RedirectButton;
 const Button = styled.button`
     all: unset;
     position: fixed;
-    top: 30px;
-    left: 30px;
+    top: 20px;
+    left: 20px;
     width: 60px;
-    height: 30px;
-    line-height: 35px;
+    height: 35px;
+    line-height: 40px;
     background-color: ${({ theme }) => theme.colors.transBlack};
     color: ${({ theme }) => theme.colors.white};
     border-radius: 5px;
