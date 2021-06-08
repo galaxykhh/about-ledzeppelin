@@ -11,7 +11,7 @@ const RedirectButton = () => {
 
     if (router.pathname === '/') {
         return null;
-    }
+    };
 
     return (
         <Button onClick={Redirect} >←</Button>

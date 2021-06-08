@@ -8,9 +8,9 @@ const menuList = [
     },
     {
         link: '/signup',
-        menu: 'sign up'
-    }
-]
+        menu: 'sign up',
+    },
+];
 
 const MenuList = () => {
     return (
