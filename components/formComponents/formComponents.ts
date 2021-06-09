@@ -40,7 +40,7 @@ export const ErrorMsg = styled(Msg)`
     color: ${({ theme }) => theme.colors.red};
 `;
 
-export const AccountCheckButton = styled.button`
+export const CheckButton = styled.button`
     position: absolute;
     top: 5px;
     right: 20px;
@@ -48,7 +48,7 @@ export const AccountCheckButton = styled.button`
     border-radius: 2px;
     background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.black};
-    font-size: 20px;
+    font-size: 16px;
     width: 90px;
     height: 30px;
     cursor: pointer;
