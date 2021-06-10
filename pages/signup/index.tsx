@@ -6,6 +6,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect } from "react";
 import { flowResult } from "mobx";
 import userStore from "../../store/userStore";
+import { useCallback } from "react";
+import { useRouter } from "next/dist/client/router";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export interface ISignUp {
     account: string;
@@ -18,55 +21,44 @@ const SignUpIndex = () => {
     const { register, handleSubmit, formState: { errors }, watch, setError, trigger } = useForm<ISignUp>();
     const [ isCheckedAccount, setIsCheckedAccount ] = useState<boolean>(false);
     const [ isCheckedNickname, setIsCheckedNickname ] = useState<boolean>(false);
+    const [ isRegistering, setIsRegistering ] = useState<boolean>(false);
+    const router = useRouter();
 
-    const setIsAvailableAccount = (): void => {
+    const setIsAvailableAccount = useCallback((): void => {
         setError('account', {
             type: 'available',
         });
-    };
+    }, []);
 
-    const setIsNotCheckedAccount = (): void => {
+    const setIsNotCheckedAccount = useCallback((): void => {
         setError('account', {
             type: 'notChecked',
         });
-    };
+    }, []);
 
-    const setIsNotAvailableAccount = (): void => {
+    const setIsNotAvailableAccount = useCallback((): void => {
         setError('account', {
             type: 'notAvailable',
         });
-    };
+    }, []);
 
-    const setIsNotCheckedNickname = (): void => {
+    const setIsNotCheckedNickname = useCallback((): void => {
         setError('nickname', {
             type: 'notChecked',
         });
-    };
+    }, []);
 
-    const setIsAvailableNickname = (): void => {
+    const setIsAvailableNickname = useCallback((): void => {
         setError('nickname', {
             type: 'available',
         });
-    };
+    }, []);
 
-    const setIsNotAvailableNickname = (): void => {
+    const setIsNotAvailableNickname = useCallback((): void => {
         setError('nickname', {
             type: 'notAvailable',
         });
-    };
-
-    const onSubmit: SubmitHandler<ISignUp> = (payload) => {
-        if (!isCheckedAccount) {
-            setIsNotCheckedAccount();
-            return;
-        }
-        if (!isCheckedNickname) {
-            setIsNotCheckedNickname();
-            return;
-        }
-        alert(JSON.stringify(payload));
-    };
-
+    }, []);
 
     const checkAccount = async (): Promise<void> => {
         await trigger('account');
@@ -100,7 +92,25 @@ const SignUpIndex = () => {
             return;
         }
         setIsNotAvailableNickname();
-    }
+    };
+
+    const onSubmit: SubmitHandler<ISignUp> = async (payload) => {
+        if (!isCheckedAccount) {
+            setIsNotCheckedAccount();
+            return;
+        }
+        if (!isCheckedNickname) {
+            setIsNotCheckedNickname();
+            return;
+        }
+        setIsRegistering(true);
+        const isSuccess = await flowResult(userStore.signUp(payload));
+        if (isSuccess) {
+            setIsRegistering(false);
+            alert('Sign up Success!');
+            router.push('/signin');
+        }
+    };
 
     useEffect(() => {
         setIsCheckedAccount(false);
@@ -109,6 +119,10 @@ const SignUpIndex = () => {
     useEffect(() => {
         setIsCheckedNickname(false);
     }, [watch('nickname')]);
+
+    if (isRegistering) {
+        return <LoadingSpinner />
+    }
 
     return (
         <Layout title='sign up page'>
@@ -120,7 +134,19 @@ const SignUpIndex = () => {
                         type='text'
                         error={errors.account && errors.account.type !== 'available'}
                         {...register('account', {
-                            required: 'Please enter your account'
+                            required: 'Please enter your account',
+                            pattern: {
+                                value: /^[a-zA-Z0-9]+$/,
+                                message: 'Please use only English and numbers',
+                            },
+                            minLength: {
+                                value: 6,
+                                message: 'Please set it to at least 6 characters',
+                            },
+                            maxLength: {
+                                value: 18,
+                                message: 'Please set it to 18 characters or less',
+                            },
                         })}
                     />
                     {errors.account && <ErrorMsg>{errors.account.message}</ErrorMsg>}
@@ -140,7 +166,15 @@ const SignUpIndex = () => {
                         placeholder='password'
                         type='password'
                         {...register('password', {
-                            required: 'Please enter your password'
+                            required: 'Please enter your password',
+                            minLength: {
+                                value: 5,
+                                message: 'Please set it to at least 5 characters'
+                            },
+                            maxLength: {
+                                value: 18,
+                                message: 'Please set it to 18 characters or less',
+                            },
                         })}
                     />
                     {errors.password && <ErrorMsg>{errors.password.message}</ErrorMsg>}
@@ -151,7 +185,6 @@ const SignUpIndex = () => {
                         placeholder='password check'
                         type='password'
                         {...register('passwordCheck', {
-                            required: 'Please check your password',
                             validate: password => password === watch('password'),
                         })}
                     />
@@ -165,6 +198,10 @@ const SignUpIndex = () => {
                         type='text'
                         {...register('nickname', {
                             required: 'Please set your nickname',
+                            pattern: {
+                                value: /^[a-zA-Z0-9]+$/,
+                                message: 'Please use only English and numbers',
+                            },
                             minLength: {
                                 value: 5,
                                 message: 'Please set it to at least 5 characters'

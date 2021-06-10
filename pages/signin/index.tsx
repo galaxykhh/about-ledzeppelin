@@ -2,6 +2,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 import Layout from "../../components/Layout";
 import { InputLayout, Input, ErrorMsg, SubmitButton } from '../../components/formComponents/formComponents';
+import { flowResult } from "mobx";
+import userStore from "../../store/userStore";
+import { useRouter } from "next/dist/client/router";
+import { useState } from "react";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export interface ISignIn {
     account: string;
@@ -10,10 +15,24 @@ export interface ISignIn {
 
 const SignInIndex = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<ISignIn>();
+    const [ isLogging, setIsLogging ] = useState<boolean>(false);
+    const router = useRouter();
 
-    const onSubmit: SubmitHandler<ISignIn> = (payload) => {
-        alert(JSON.stringify(payload));
+    const onSubmit: SubmitHandler<ISignIn> = async (payload) => {
+        setIsLogging(true);
+        const isSuccess = await flowResult(userStore.signIn(payload));
+        if (isSuccess) {
+            setIsLogging(false);
+            router.push('/');
+        } else {
+            setIsLogging(false);
+            alert('invalid information');
+        }
     };
+
+    if (isLogging) {
+        return <LoadingSpinner />
+    }
 
     return (
         <Layout title='sign in page'>

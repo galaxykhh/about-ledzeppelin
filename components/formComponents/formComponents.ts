@@ -48,8 +48,8 @@ export const CheckButton = styled.button`
     border-radius: 2px;
     background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.black};
-    font-size: 16px;
-    width: 90px;
+    font-size: 15px;
+    width: 80px;
     height: 30px;
     cursor: pointer;
     @media only screen and (max-width: 600px) {

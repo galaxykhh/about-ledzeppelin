@@ -52,8 +52,15 @@ class UserStore implements IUser {
 
     public *signIn(payload: ISignIn) {
         try {
-            const { data: { message } } = yield userRepository.signIn(payload);
+            const { data: { message, account, nickname, token } } = yield userRepository.signIn(payload);
             if (message === 'signin success') {
+                const userData = {
+                    account, nickname
+                };
+                this.setUserData(userData);
+                localStorage.setItem('lzgToken', token);
+                console.log(token);
+                console.log(this.userData);
                 return true;
             }
             if (message === 'invalid') {
