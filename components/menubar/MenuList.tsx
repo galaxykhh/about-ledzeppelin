@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import userStore from "../../store/userStore";
 import Menu from './Menu';
 
-const menuList = [
+const forNotUserList = [
     {
         link: '/signin',
         menu: 'sign in',
@@ -12,10 +13,32 @@ const menuList = [
     },
 ];
 
+const forUserList = [
+    {
+        link: '/mypage',
+        menu: 'my page',
+    },
+]
+
 const MenuList = () => {
+
+    if (userStore.userData) {
+        return (
+            <Layout>
+                {forUserList.map(item => (
+                    <Menu
+                        link={item.link}
+                        menu={item.menu}
+                        key={item.menu}
+                    />
+                ))}
+            </Layout>
+        );
+    }
+
     return (
         <Layout>
-            {menuList.map(item => (
+            {forNotUserList.map(item => (
                 <Menu
                     link={item.link}
                     menu={item.menu}
